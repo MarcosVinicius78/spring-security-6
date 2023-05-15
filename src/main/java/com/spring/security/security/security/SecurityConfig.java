@@ -23,14 +23,15 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authConfig -> {
                     authConfig.requestMatchers(HttpMethod.GET, "/").permitAll();
-                    authConfig.requestMatchers(HttpMethod.GET, "/user").hasRole("USER");
+                    authConfig.requestMatchers(HttpMethod.GET, "/user").hasAnyAuthority("ROLER_USER", "OIDC_USER");
                     authConfig.requestMatchers(HttpMethod.GET, "/admin").hasRole("ADMIN");
                     authConfig.anyRequest().authenticated();
                 })
                 .csrf(csrf -> csrf.disable())
                 .headers(headers -> headers.frameOptions().disable())
                 .formLogin(withDefaults()) // Login with browser and Build in Form
-                .httpBasic(withDefaults()); // Login with Insomnia or Postman and Basic Auth
+                .httpBasic(withDefaults()) // Login with Insomnia or Postman and Basic Auth
+                .oauth2Login(withDefaults());
 		return http.build();
 	}
 
