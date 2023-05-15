@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "loggin.leval.org.springframework.jdbc",
+  "type": "java.lang.String",
+  "description": "A description for 'loggin.leval.org.springframework.jdbc'"
+}]}
